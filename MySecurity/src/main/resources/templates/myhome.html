@@ -1,0 +1,83 @@
+	<!DOCTYPE html>D
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calendar</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Calendar</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Sun</th>
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+        <th>Sat</th>
+      </tr>
+    </thead>
+    <tbody id="calendar-body">
+      <!-- Calendar days will be dynamically inserted here -->
+    </tbody>
+  </table>
+
+  <script>
+    function generateCalendar(year, month) {
+      const firstDay = new Date(year, month - 1, 1);
+      const lastDay = new Date(year, month, 0);
+      const daysInMonth = lastDay.getDate();
+
+      const calendarBody = document.getElementById('calendar-body');
+      calendarBody.innerHTML = '';
+
+      let dateCount = 1;
+
+      for (let i = 0; i < 6; i++) {
+        const row = document.createElement('tr');
+
+        for (let j = 0; j < 7; j++) {
+          if (i === 0 && j < firstDay.getDay()) {
+            const cell = document.createElement('td');
+            row.appendChild(cell);
+          } else if (dateCount <= daysInMonth) {
+            const cell = document.createElement('td');
+            cell.textContent = dateCount;
+            row.appendChild(cell);
+            dateCount++;
+          }
+        }
+
+        calendarBody.appendChild(row);
+
+        if (dateCount > daysInMonth) {
+          break;
+        }
+      }
+    }
+
+    // Example: Display calendar for December 2023
+    generateCalendar(2023, 12);
+  </script>
+
+</body>
+</html>
