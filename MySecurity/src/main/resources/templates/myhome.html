@@ -1,7 +1,9 @@
-	<!DOCTYPE html>D
+<!DOCTYPE html>
+<html lang="ja">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Calendar</title>
+  <title>予定表</title>
   <style>
     table {
       width: 100%;
@@ -12,7 +14,7 @@
     th, td {
       border: 1px solid #ddd;
       padding: 8px;
-      text-align: center;
+      text-align: left;
     }
 
     th {
@@ -22,62 +24,60 @@
 </head>
 <body>
 
-  <h2>Calendar</h2>
+  <h2>予定表</h2>
 
   <table>
     <thead>
       <tr>
-        <th>Sun</th>
-        <th>Mon</th>
-        <th>Tue</th>
-        <th>Wed</th>
-        <th>Thu</th>
-        <th>Fri</th>
-        <th>Sat</th>
+        <th></th>
+        <th>月</th>
+        <th>火</th>
+        <th>水</th>
+        <th>木</th>
+        <th>金</th>
+        
       </tr>
     </thead>
-    <tbody id="calendar-body">
-      <!-- Calendar days will be dynamically inserted here -->
+    <tbody>
+      <tr>
+        <td>一限</td>
+        <td>Javaフレームワーク</td>
+        <td>システム設計</td>
+        <td>ノーコード開発演習</td>
+        <td>進級制作I</td>
+        <td>暗号技術</td>
+        
+      </tr>
+      <tr>
+        <td>二限</td>
+        <td>進級制作I</td>
+        <td>C#演習</td>
+        <td>スポーツ実習</td>
+        <td>データベース応用</td>
+        <td>検定対策講座</td>
+        <!-- 同様に予定を追加 -->
+      </tr>
+      <tr>
+        <td>三限</td>
+        <td>Javascript応用</td>
+        <td>Javaフレームワーク</td>
+        <td>放送大学</td>
+        <td>情報総合II</td>
+        <td>Python基礎演習</td>
+        <!-- 同様に予定を追加 -->
+      </tr>
+      <tr>
+        <td>四限</td>
+        <td>放送大学</td>
+        <td>放送大学</td>
+        <td>クラブ活動</td>
+        <td>放送大学</td>
+        <td>放送大学</td>
+        <!-- 同様に予定を追加 -->
+      </tr>
+      <!-- 他の日付を追加 -->
     </tbody>
   </table>
-
-  <script>
-    function generateCalendar(year, month) {
-      const firstDay = new Date(year, month - 1, 1);
-      const lastDay = new Date(year, month, 0);
-      const daysInMonth = lastDay.getDate();
-
-      const calendarBody = document.getElementById('calendar-body');
-      calendarBody.innerHTML = '';
-
-      let dateCount = 1;
-
-      for (let i = 0; i < 6; i++) {
-        const row = document.createElement('tr');
-
-        for (let j = 0; j < 7; j++) {
-          if (i === 0 && j < firstDay.getDay()) {
-            const cell = document.createElement('td');
-            row.appendChild(cell);
-          } else if (dateCount <= daysInMonth) {
-            const cell = document.createElement('td');
-            cell.textContent = dateCount;
-            row.appendChild(cell);
-            dateCount++;
-          }
-        }
-
-        calendarBody.appendChild(row);
-
-        if (dateCount > daysInMonth) {
-          break;
-        }
-      }
-    }
-
-    // Example: Display calendar for December 2023
-    generateCalendar(2023, 12);
-  </script>
 
 </body>
 </html>
